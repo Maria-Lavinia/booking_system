@@ -26,7 +26,7 @@ export class BookingsService {
   }
 
   async remove(id: number) {
-    // return this.photoRepository.find();
+    return this.bookingRepository.delete(id);
   }
 
 

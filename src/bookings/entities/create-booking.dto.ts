@@ -6,6 +6,7 @@ export class BookingDto {
     phone: string;
     email: string;
     comment: string;
+    approved: string;
 
     constructor(name: string, numberOfPeople: number, date: Date, phone: string, email: string, comment: string){
         this.name = name
@@ -13,7 +14,8 @@ export class BookingDto {
         this.date = date,
         this.phone = phone,
         this.email = email,
-        this.comment = comment
+        this.comment = comment,
+        this.approved = this.approved
 
     }
 
