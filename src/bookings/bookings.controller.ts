@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { BookingsService } from './bookings.service';
 import { Booking } from './entities/booking.entity';
-import { BookingDto } from './entities/create-booking.dto';
+import { BookingDto } from './entities/booking.dto';
 
 @Controller('bookings')
 export class BookingsController {
@@ -9,7 +9,7 @@ export class BookingsController {
 
  
 
-    @Get()
+@Get()
   findAll() {
     return this.bookingService.findAll();
   }

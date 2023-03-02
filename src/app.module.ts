@@ -4,7 +4,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { BookingsModule } from './bookings/bookings.module';
-import { UsersModule } from './users/users.module';
 
 
 @Module({
@@ -20,16 +19,16 @@ import { UsersModule } from './users/users.module';
        password: configService.get('DB_PASSWORD'),
        database: configService.get('DB_NAME'),
        autoLoadEntities: true,
-       synchronize: false, // Setting synchronize: true shouldn't be used in production - otherwise you can lose production data.
+       synchronize: true, // Setting synchronize: true shouldn't be used in production - otherwise you can lose production data.
      }),
      inject: [ConfigService],
    }),
    BookingsModule,
-   UsersModule,
  ],
  controllers: [AppController],
  providers: [AppService],
 })
 export class AppModule {}
+
 
 

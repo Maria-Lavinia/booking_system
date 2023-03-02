@@ -9,18 +9,17 @@ export class Booking {
     name: string
 
     @Column()
-    numberOfPeople: number
+    numberOfPeople: number;
 
     @Column()
     date: Date
 
     @Column()
-    phone: string
+    phone: string;
 
     @Column()
-    email: string
+    email: string;
 
     @Column()
-    comment: string
-
+    comment: string;
 }
