@@ -21,8 +21,10 @@ export class BookingsService {
     return this.bookingRepository.save(bookingDto);
   }
 
-  async update(id: number, bookingDto: BookingDto) {
-    // return this.photoRepository.find();
+  async update(id: number, bookingDto: BookingDto): Promise<Booking> {
+    await this.bookingRepository.update({ id }, { ...bookingDto });
+    const updatedBooking = await this.bookingRepository.findOneBy({ id: id });
+    return updatedBooking;
   }
 
   async remove(id: number) {
