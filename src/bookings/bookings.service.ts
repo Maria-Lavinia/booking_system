@@ -6,30 +6,31 @@ import { BookingDto } from './entities/booking.dto';
 
 @Injectable()
 export class BookingsService {
-    constructor(@InjectRepository(Booking) private bookingRepository: Repository<Booking>){}
+    constructor(@InjectRepository(Booking) 
+        private bookingRepository: Repository<Booking>) {}
 
 
-  async findAll(): Promise<Booking[]> {
-    return this.bookingRepository.find();
-  }
+    async findAll(): Promise<Booking[]> {
+        return this.bookingRepository.find();
+    }
 
-  async findById(id: number): Promise<Booking> {
-    return this.bookingRepository.findOneBy({id: id});
-  }
+    async findById(id: number): Promise<Booking> {
+        return this.bookingRepository.findOneBy({id: id});
+    }
 
-  async create(bookingDto: BookingDto): Promise<Booking>  {
-    return this.bookingRepository.save(bookingDto);
-  }
+    async create(bookingDto: BookingDto) : Promise<Booking> {
+        return this.bookingRepository.save(bookingDto);
+    }
 
-  async update(id: number, bookingDto: BookingDto): Promise<Booking> {
-    await this.bookingRepository.update({ id }, { ...bookingDto });
-    const updatedBooking = await this.bookingRepository.findOneBy({ id: id });
-    return updatedBooking;
-  }
+    async update(id: number, bookingDto: BookingDto) {
+        return
+    }
 
-  async remove(id: number) {
-    return this.bookingRepository.delete(id);
-  }
+    async remove(id: number) {
+        return
+    }
+
+
 
 
 
