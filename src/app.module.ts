@@ -6,17 +6,13 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { BookingsModule } from './bookings/bookings.module';
 import { ProblemsModule } from './problems/problems.module';
 import { AuthModule } from './authentication/auth.module';
-import { Problem } from './problems/entities/problem.entity';
-import { UserEntity } from './authentication/entities/user';
-import { TenantEntity } from './authentication/entities/tenant';
-import { BoardMemberEntity } from './authentication/entities/boardmember';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
+      useFactory: (configService: ConfigService) => ({  
         type: 'postgres',
         host: configService.get('DB_HOST'),
         port: +configService.get<number>('DB_PORT'),
