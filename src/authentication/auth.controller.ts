@@ -7,6 +7,7 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './local-auth.guard';
+import { JwtAuthGuard } from './jwt-auth.guard';
 
 @Controller()
 export class AuthController {
@@ -23,6 +24,7 @@ export class AuthController {
   async signup(@Request2() req) {
     return this.authService.signupTenant(req.body);
   }
+  // @UseGuards(JwtAuthGuard)
   @Post('auth/signupboardmember')
   async signupBoardMember(@Request2() req) {
     return this.authService.signupBoardMember(req.body);

@@ -42,17 +42,18 @@ export class AuthService {
   }
 
   async login(user: UserEntity) {
-    let role = Role.User;
+    // let role = Role.User;
     let payload: any = {
       username: user.username,
       id: user.id,
-      role: role,
+      // role: role,
     };
-
+    
+  // it's safe not to return the role in the payload
     if (user.tenant) {
       payload.tenantId = user.tenant.id;
     } else if (user.board) {
-      role = Role.Admin;
+      // role = Role.Admin;
       payload.boardId = user.board.id;
     }
 

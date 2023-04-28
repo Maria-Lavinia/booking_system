@@ -4,6 +4,8 @@ import { BoardMemberEntity } from '../authentication/entities/boardmember';
 import { TenantEntity } from '../authentication/entities/tenant';
 import { UserEntity } from '../authentication/entities/user';
 import { UsersService } from './users.service';
+import { ProblemsModule } from 'src/problems/problems.module';
+import { Problem } from 'src/problems/entities/problem.entity';
 
 @Module({
   imports: [

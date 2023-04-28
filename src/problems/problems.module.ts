@@ -12,13 +12,14 @@ import { UserEntity } from 'src/authentication/entities/user';
 import { TenantEntity } from 'src/authentication/entities/tenant';
 import { BoardMemberEntity } from 'src/authentication/entities/boardmember';
 import { JwtModule, JwtService } from '@nestjs/jwt';
+import { HttpModule, HttpService } from '@nestjs/axios';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Problem, BoardMemberEntity, TenantEntity]),
-    UsersModule,
+    AuthModule, HttpModule
   ],
   controllers: [ProblemsController],
-  providers: [ProblemsService, UsersService],
+  providers: [ProblemsService, UsersService, HttpService, UserEntity],
 })
 export class ProblemsModule {}

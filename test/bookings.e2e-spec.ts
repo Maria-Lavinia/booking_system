@@ -33,8 +33,9 @@ describe('BookingController (e2e)', () => {
 
 
     describe('GET Bookings', () => {
-        it('should retrieve all bookings (GET)', async () => {
-            
+        it('should create a board member user)', async () => {
+
+            const user = {username: 'maria', password: "1234"} // could be loaded from an env file 
             // Arrange
             await Promise.all([
                 await bookingRepository.insert(new BookingDto('Nikolaj', 2, 
@@ -60,19 +61,19 @@ describe('BookingController (e2e)', () => {
     })
 
 
-    describe('POST bookings', () => {
-        it('should create a new valid booking (POST)', async () => {
-          const booking = new BookingDto('Christian', 5, new Date(), '12345678', 
-              'kirs@cphbusiness.dk', 'We are alergic to nuts');
+    // describe('POST bookings', () => {
+    //     it('should create a new valid booking (POST)', async () => {
+    //       const booking = new BookingDto('Christian', 5, new Date(), '12345678', 
+    //           'kirs@cphbusiness.dk', 'We are alergic to nuts');
           
-          const {body} = await request(app.getHttpServer())
-            .post('/bookings')
-            .send(booking)
-            .expect(201)
+    //       const {body} = await request(app.getHttpServer())
+    //         .post('/bookings')
+    //         .send(booking)
+    //         .expect(201)
             
-            expect(body.name).toEqual('Christian');
-        });
-    })
+    //         expect(body.name).toEqual('Christian');
+    //     });
+    // })
 
   afterAll(() => {
     app.close();

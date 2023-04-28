@@ -8,6 +8,7 @@ import {
   Delete,
   UseGuards,
   Request,
+  Req,
 } from '@nestjs/common';
 import { ProblemsService } from './problems.service';
 import { UsersService } from 'src/users/users.service';
@@ -23,11 +24,23 @@ export class ProblemsController {
     private readonly userService: UsersService,
   ) {}
 
+
   @Post()
-  async create(@Body() createProblemDto: CreateProblemDto) {
-    const user = await this.userService.findOneById(7);
-    createProblemDto.user = user;
-    return this.problemsService.create(createProblemDto);
+  async create(@Req() req, @Body() body) {
+      console.log("body", body);
+      
+      const display_url = await this.problemsService.savePic(body.data.photo.base64);
+      
+      console.log("image url", display_url);
+      
+      const createProblemDto = new CreateProblemDto(body.data.subject, body.data.description, display_url);
+      //  createProblemDto.tenant = 
+      //   (await this.usersService.findOne(req.user.username)).tenant;
+      
+       
+      
+      return this.problemsService.create(createProblemDto);
+
   }
 
   @UseGuards(JwtAuthGuard, AdminGuard)
@@ -51,4 +64,10 @@ export class ProblemsController {
   remove(@Param('id') id: string) {
     return this.problemsService.remove(+id);
   }
+
+  // @Post('savePic')
+  // async savePic(@Body() body) {
+  //   console.log('body', body);
+  //   return this.problemsService.savePic();
+  // }
 }
